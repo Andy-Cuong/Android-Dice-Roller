@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -25,7 +24,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.diceroller.ui.theme.DiceRollerTheme
-import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,9 +70,12 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
         // Typically, dp dimensions are changed in increments of 4dp
 //        Spacer(modifier = Modifier.height(16.dp))
 
+        var isRollable by remember { mutableStateOf(true) }
         Button(
+            enabled = isRollable,
             onClick = {
                 result = (1..6).random() // random() is used on a number range
+                isRollable = false
             }
         ) {
             Text(
