@@ -13,7 +13,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -70,12 +69,9 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
         // Typically, dp dimensions are changed in increments of 4dp
 //        Spacer(modifier = Modifier.height(16.dp))
 
-        var isRollable by remember { mutableStateOf(true) }
         Button(
-            enabled = isRollable,
             onClick = {
                 result = (1..6).random() // random() is used on a number range
-                isRollable = false
             }
         ) {
             Text(
